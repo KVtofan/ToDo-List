@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Clock from './components/Clock';
 import TodoApp from './todo-marekdano/TodoApp';
-import todoItems from './todo-marekdano/todoItems';
 import JSONdate from './data.json';
+
+import FilterableProductTable from './search/FilterableProductTable';
+import PRODUCTS from './search/productsData';
 
 class App extends Component {
   // constructor(props) {
@@ -15,8 +17,8 @@ class App extends Component {
       <div className="App">
         <p className="App-intro">Hello World!</p>
         <Clock />
-        {/*}<TodoApp /> */}
         <TodoApp initItems={JSONdate.tasks}/>
+        <FilterableProductTable products ={PRODUCTS} />
       </div>
     );
   }
