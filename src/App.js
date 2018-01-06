@@ -16,7 +16,7 @@ class App extends Component {
         <p className="App-intro">Hello World!</p>
         <Clock />
         {/*}<TodoApp /> */}
-        <TodoApp initItems={todoItems}/>
+        <TodoApp initItems={JSONdate.tasks}/>
       </div>
     );
   }
@@ -25,5 +25,5 @@ class App extends Component {
 export default App;
 
 // function giveData() {
-//   console.log(JSONdate);
+//   console.log(JSONdate.tasks);
 // }

@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import TodoHeader from './TodoHeader';
 import TodoList from './TodoList';
 import TodoForm from './TodoForm';
-import todoItems from './todoItems';
+// import todoItems from './todoItems';
+import JSONdate from './../data.json';
+
 
 class TodoApp extends Component {
   constructor(props) {
     super(props);
-    this.state = {todoItems: todoItems};
+    this.state = {todoItems: JSONdate.tasks};
 
     this.addItem = this.addItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
@@ -15,27 +17,27 @@ class TodoApp extends Component {
   }
 
   addItem(todoItem) {
-    todoItems.unshift({
-      index: todoItems.length+1,
+    JSONdate.tasks.unshift({
+      index: JSONdate.tasks.length+1,
       value: todoItem.newItemValue,
       done: false
     });
 
-    this.setState({ todoItems: todoItems });
+    this.setState({ todoItems: JSONdate.tasks });
   }
 
   removeItem(itemIndex) {
-    todoItems.splice(itemIndex, 1);
-    this.setState({ todoItems: todoItems });
+    JSONdate.tasks.splice(itemIndex, 1);
+    this.setState({ todoItems: JSONdate.tasks });
   }
 
   markTodoDone(itemIndex) {
-    let todo = todoItems[itemIndex];
-    todoItems.splice(itemIndex, 1);
+    let todo = JSONdate.tasks[itemIndex];
+    JSONdate.tasks.splice(itemIndex, 1);
     todo.done = !todo.done;
-    todo.done ? todoItems.push(todo) : todoItems.unshift(todo);
+    todo.done ? JSONdate.tasks.push(todo) : JSONdate.tasks.unshift(todo);
 
-    this.setState({ todoItems: todoItems });
+    this.setState({ todoItems: JSONdate.tasks });
   }
 
   render() {
