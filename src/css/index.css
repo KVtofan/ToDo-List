@@ -1,7 +1,17 @@
+.FilterableProductTable {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.list-group-item input[type="checkbox"] {
+  margin-right: 30px;
+}
+
 html, body {
   height: 100%;
   color: #1383a2;
   background: #ffffff;
+  padding: 5px;
 }
 
 h1 {

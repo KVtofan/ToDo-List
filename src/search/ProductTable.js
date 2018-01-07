@@ -5,7 +5,7 @@ import ProductCategoryRow from './ProductCategoryRow';
 class ProductTable extends Component {
   render() {
     const filterText = this.props.filterText;
-    const inStockOnly = this.props.inStockOnly;
+    const done = this.props.done;
 
     const rows =[];
     let lastCategory = null;
@@ -14,9 +14,10 @@ class ProductTable extends Component {
       if (product.name.indexOf(filterText) === -1) {
         return;
       }
-      if (inStockOnly && !product.stocked) {
+      if (!done && !product.done) {
         return;
       }
+
       if (product.category !== lastCategory) {
         rows.push(
           <ProductCategoryRow

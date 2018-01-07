@@ -43,12 +43,15 @@ class TodoApp extends Component {
   render() {
     return (
       <div id="main">
+        <hr />
         <TodoHeader />
+        <TodoForm addItem={this.addItem} />
+        <br />
         <TodoList items={this.props.initItems}
                   removeItem={this.removeItem}
                   markTodoDone={this.markTodoDone}
         />
-        <TodoForm addItem={this.addItem} />
+        <hr />
       </div>
     );
   }

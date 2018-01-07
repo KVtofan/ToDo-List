@@ -4,15 +4,15 @@ class SearchBar extends Component {
   constructor(props){
     super(props);
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
-    this.handleInStockChange = this.handleInStockChange.bind(this);
+    this.handleDoneChange = this.handleDoneChange.bind(this);
   }
 
   handleFilterTextChange(e) {
     this.props.onFilterTextChange(e.target.value)
   }
 
-  handleInStockChange(e) {
-    this.props.onInStockChange(e.target.chacked);
+  handleDoneChange(e) {
+    this.props.onDoneChange(e.target.checked);
   }
 
   render() {
@@ -27,11 +27,11 @@ class SearchBar extends Component {
       <p>
         <input
           type="checkbox"
-          checked={this.props.inStockOnly}
-          onChange={this.handleInStockChange}
+          checked={this.props.done}
+          onChange={this.handleDoneChange}
         />
         {' '}
-        Only show product in stock
+        Show done
       </p>
       </form>
     );

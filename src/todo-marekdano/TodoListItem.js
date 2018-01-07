@@ -8,12 +8,12 @@ class TodoListItem extends Component {
   }
 
   onClickDone() {
-    let index = parseInt(this.props.index);
+    let index = parseInt(this.props.index, 10);
     this.props.markTodoDone(index);
   }
 
   onClickClose() {
-    let index = parseInt(this.props.index);
+    let index = parseInt(this.props.index, 10);
     this.props.removeItem(index);
   }
 
@@ -24,11 +24,18 @@ class TodoListItem extends Component {
     return (
       <li className="list-group-item ">
         <div className={todoClass}>
-          <span className="glyphicon glyphicon-ok icon" aria-hidden="true"
-                onClick={this.onClickDone}></span>
+          <input
+            type="checkbox"
+            checked={this.props.item.done}
+            onChange={this.onClickDone}
+          />
           {this.props.item.value}
-          <button type="button"className="close"
-                  onClick={this.onClickClose}>&times;</button>
+          <button
+            type="button"
+            className="close"
+            onClick={this.onClickClose}>
+            &times;
+          </button>
         </div>
       </li>
     );
