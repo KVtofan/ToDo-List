@@ -25,13 +25,14 @@ class SearchBar extends Component {
           onChange={this.handleFilterTextChange}
         />
       <p>
-        <input
-          type="checkbox"
-          checked={this.props.done}
-          onChange={this.handleDoneChange}
-        />
-        {' '}
-        Show done
+        <label>
+          <input
+            type="checkbox"
+            checked={this.props.done}
+            onChange={this.handleDoneChange}
+          />
+          Show done
+        </label>
       </p>
       </form>
     );
