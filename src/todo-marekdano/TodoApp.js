@@ -2,18 +2,37 @@ import React, { Component } from 'react';
 import TodoHeader from './TodoHeader';
 import TodoList from './TodoList';
 import TodoForm from './TodoForm';
-// import todoItems from './todoItems';
+import SearchBar from './SearchBar';
 import JSONdate from './../data.json';
 
 
 class TodoApp extends Component {
   constructor(props) {
     super(props);
-    this.state = {todoItems: JSONdate.tasks};
+    this.state = {
+      todoItems: JSONdate.tasks,
+      filterText: '',
+      done: true
+    };
+
+    this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+    this.handleDoneChange = this.handleDoneChange.bind(this);
 
     this.addItem = this.addItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.markTodoDone = this.markTodoDone.bind(this);
+  }
+
+  handleFilterTextChange(filterText) {
+    this.setState({
+      filterText: filterText
+    });
+  }
+
+  handleDoneChange(done) {
+    this.setState({
+      done: done
+    })
   }
 
   addItem(todoItem) {
@@ -44,10 +63,18 @@ class TodoApp extends Component {
     return (
       <div id="main">
         <hr />
+        <SearchBar
+          filterText={this.state.filterText}
+          done={this.state.done}
+          onFilterTextChange={this.handleFilterTextChange}
+          onDoneChange={this.handleDoneChange}
+        />
         <TodoHeader />
         <TodoForm addItem={this.addItem} />
         <br />
         <TodoList items={this.props.initItems}
+                  filterText={this.state.filterText}
+                  done={this.state.done}
                   removeItem={this.removeItem}
                   markTodoDone={this.markTodoDone}
         />
