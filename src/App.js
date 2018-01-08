@@ -20,7 +20,7 @@ class App extends Component {
         <Clock />
         */}
         <TodoApp initItems={JSONdate.tasks}/>
-        <FilterableProductTable products ={PRODUCTS} />
+        {/*<FilterableProductTable products ={PRODUCTS} /> */}
       </div>
     );
   }

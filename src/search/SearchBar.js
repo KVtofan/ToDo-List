@@ -4,14 +4,14 @@ class SearchBar extends Component {
   constructor(props){
     super(props);
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
-    this.handleDoneChange = this.handleDoneChange.bind(this);
+    this.handleShowDoneChange = this.handleShowDoneChange.bind(this);
   }
 
   handleFilterTextChange(e) {
     this.props.onFilterTextChange(e.target.value)
   }
 
-  handleDoneChange(e) {
+  handleShowDoneChange(e) {
     this.props.onDoneChange(e.target.checked);
   }
 
@@ -29,7 +29,7 @@ class SearchBar extends Component {
           <input
             type="checkbox"
             checked={this.props.done}
-            onChange={this.handleDoneChange}
+            onChange={this.handleShowDoneChange}
           />
           Show done
         </label>

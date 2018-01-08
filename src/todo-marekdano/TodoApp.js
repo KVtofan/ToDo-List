@@ -1,26 +1,19 @@
 import React, { Component } from 'react';
 import TodoHeader from './TodoHeader';
-import TodoList from './TodoList';
-import TodoForm from './TodoForm';
 import SearchBar from './SearchBar';
-import JSONdate from './../data.json';
+import Tasks from './tasks/Tasks';
 
 
 class TodoApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todoItems: JSONdate.tasks,
       filterText: '',
       done: true
     };
 
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
-    this.handleDoneChange = this.handleDoneChange.bind(this);
-
-    this.addItem = this.addItem.bind(this);
-    this.removeItem = this.removeItem.bind(this);
-    this.markTodoDone = this.markTodoDone.bind(this);
+    this.handleShowDoneChange = this.handleShowDoneChange.bind(this);
   }
 
   handleFilterTextChange(filterText) {
@@ -29,34 +22,10 @@ class TodoApp extends Component {
     });
   }
 
-  handleDoneChange(done) {
+  handleShowDoneChange(done) {
     this.setState({
       done: done
     })
-  }
-
-  addItem(todoItem) {
-    JSONdate.tasks.unshift({
-      index: JSONdate.tasks.length+1,
-      value: todoItem.newItemValue,
-      done: false
-    });
-
-    this.setState({ todoItems: JSONdate.tasks });
-  }
-
-  removeItem(itemIndex) {
-    JSONdate.tasks.splice(itemIndex, 1);
-    this.setState({ todoItems: JSONdate.tasks });
-  }
-
-  markTodoDone(itemIndex) {
-    let todo = JSONdate.tasks[itemIndex];
-    JSONdate.tasks.splice(itemIndex, 1);
-    todo.done = !todo.done;
-    todo.done ? JSONdate.tasks.push(todo) : JSONdate.tasks.unshift(todo);
-
-    this.setState({ todoItems: JSONdate.tasks });
   }
 
   render() {
@@ -67,16 +36,13 @@ class TodoApp extends Component {
           filterText={this.state.filterText}
           done={this.state.done}
           onFilterTextChange={this.handleFilterTextChange}
-          onDoneChange={this.handleDoneChange}
+          onDoneChange={this.handleShowDoneChange}
         />
         <TodoHeader />
-        <TodoForm addItem={this.addItem} />
-        <br />
-        <TodoList items={this.props.initItems}
-                  filterText={this.state.filterText}
-                  done={this.state.done}
-                  removeItem={this.removeItem}
-                  markTodoDone={this.markTodoDone}
+        <Tasks
+          items={this.props.initItems}
+          filterText={this.state.filterText}
+          done={this.state.done}
         />
         <hr />
       </div>
