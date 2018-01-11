@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
-import CategoryListItem from './CategoryListItem'; 
+import CategoryListItem from './CategoryListItem';
 
-class CategoryList extends Component{
+class CategoryList extends Component {
   render() {
     let items = this.props.items.map((item, index) => {
       return (
-        <CategoryListItem key={index} item={item} imdex={index}
+        <CategoryListItem key={index} item={item} index={index}
                           removeItem={this.props.removeItem}
+                          editCategoryName={this.props.editCategoryName}
         />
       );
     });
 
     return (
-      <ul className="category-list"> {items} </ul>
-    )
+      <ul className="category-list list-group"> {items} </ul>
+    );
   }
 }
 
-export default CategoryList
+export default CategoryList;

@@ -1,24 +1,24 @@
 {
   "categories":[
-    {"index":1,"value":"Category 1",
+    {"value":"Category 1",
       "subcategories":[
-        {"index":1,"value":"Subcategory 1"},
-        {"index":2,"value":"Subcategory 2"},
-        {"index":3,"value":"Subcategory 3"}
+        {"value":"Subcategory 1"},
+        {"value":"Subcategory 2"},
+        {"value":"Subcategory 3"}
       ]
     },
-    {"index":2,"value":"Category 2",
+    {"value":"Category 2",
       "subcategories":[
-        {"index":1,"value":"Subcategory 1"},
-        {"index":2,"value":"Subcategory 2"},
-        {"index":3,"value":"Subcategory 3"}
+        {"value":"Subcategory 1"},
+        {"value":"Subcategory 2"},
+        {"value":"Subcategory 3"}
       ]
     },
-    {"index":3,"value":"Category 3",
+    {"value":"Category 3",
       "subcategories":[
-        {"index":1,"value":"Subcategory 1"},
-        {"index":2,"value":"Subcategory 2"},
-        {"index":3,"value":"Subcategory 3"}
+        {"value":"Subcategory 1"},
+        {"value":"Subcategory 2"},
+        {"value":"Subcategory 3"}
       ]
     }
   ],
