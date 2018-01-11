@@ -7,7 +7,7 @@ class Tasks extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      todoItems: JSONdate.tasks
+      taskList: JSONdate.tasks
     }
 
     this.addItem = this.addItem.bind(this);
@@ -17,17 +17,16 @@ class Tasks extends Component{
 
   addItem(todoItem) {
     JSONdate.tasks.unshift({
-      index: JSONdate.tasks.length+1,
       value: todoItem.newItemValue,
       done: false
     });
 
-    this.setState({ todoItems: JSONdate.tasks });
+    this.setState({ taskList: JSONdate.tasks });
   }
 
   removeItem(itemIndex) {
     JSONdate.tasks.splice(itemIndex, 1);
-    this.setState({ todoItems: JSONdate.tasks });
+    this.setState({ taskList: JSONdate.tasks });
   }
 
   markTodoDone(itemIndex) {
@@ -36,7 +35,7 @@ class Tasks extends Component{
     todo.done = !todo.done;
     todo.done ? JSONdate.tasks.push(todo) : JSONdate.tasks.unshift(todo);
 
-    this.setState({ todoItems: JSONdate.tasks });
+    this.setState({ taskList: JSONdate.tasks });
   }
 
   render() {
