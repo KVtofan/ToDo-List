@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 
-class TodoForm extends Component {
+class AddItemForm extends Component{
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  //  Immediately after loading page puts focus in the input field
-  componentDidMount() {
-    this.refs.itemName.focus();
   }
 
   onSubmit(event) {
@@ -22,10 +17,12 @@ class TodoForm extends Component {
   }
 
   render() {
+    let placeholder = "Add a new " + this.props.target;
+
     return (
       <form ref="form" onSubmit={this.onSubmit} className="form-inline">
         <input type="text" ref="itemName" className="form-control"
-               placeholder="add a new todo..."
+               placeholder={placeholder}
         />
         <button type="submit" className="btn btn-default">Add</button>
       </form>
@@ -33,4 +30,4 @@ class TodoForm extends Component {
   }
 }
 
-export default TodoForm;
+export default AddItemForm;

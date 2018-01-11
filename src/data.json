@@ -1,8 +1,13 @@
 {
-  "categories":"Category 1",
+  "categories":[
+    {"index":1,"value":"Category 1"},
+    {"index":2,"value":"Category 2"},
+    {"index":3,"value":"Category 3"}
+  ],
   "tasks":[
     {"index":1,"value":"learn react","done":false},
-    {"index":2,"value":"Go shopping","done":true},
-    {"index":3,"value":"buy flowers","done":true}
+    {"index":2,"value":"Go shopping","done":false},
+    {"index":3,"value":"Make To-Do","done":true},
+    {"index":4,"value":"buy flowers","done":true}
   ]
 }

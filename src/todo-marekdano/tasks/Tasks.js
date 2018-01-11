@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import TodoList from './TodoList';
-import TodoForm from './TodoForm';
+import AddItemForm from './../AddItemForm';
 import JSONdate from './../../data.json';
 
 class Tasks extends Component{
   constructor(props) {
     super(props);
-    this.state ={
+    this.state = {
       todoItems: JSONdate.tasks
     }
 
@@ -42,7 +42,7 @@ class Tasks extends Component{
   render() {
     return (
       <div className="tasks">
-        <TodoForm addItem={this.addItem} />
+        <AddItemForm addItem={this.addItem} target={'To-Do'}/>
         <br />
         <TodoList items={this.props.items}
                   filterText={this.props.filterText}
@@ -50,7 +50,7 @@ class Tasks extends Component{
                   removeItem={this.removeItem}
                   markTodoDone={this.markTodoDone}
         />
-    </div>
+      </div>
     )
   }
 }

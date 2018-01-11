@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TodoHeader from './TodoHeader';
 import SearchBar from './SearchBar';
 import Tasks from './tasks/Tasks';
+import Categories from './categories/Categories';
 
 
 class TodoApp extends Component {
@@ -40,11 +41,14 @@ class TodoApp extends Component {
         />
         <TodoHeader />
         <Tasks
-          items={this.props.initItems}
+          items={this.props.initItems.tasks}
           filterText={this.state.filterText}
           done={this.state.done}
         />
         <hr />
+        <Categories
+          items={this.props.initItems.categories}
+        />
       </div>
     );
   }
