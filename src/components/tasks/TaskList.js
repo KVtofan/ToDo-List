@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import TodoListItem from './TodoListItem';
+import TaskListItem from './TaskListItem';
 
-class TodoList extends Component{
+class TaskList extends Component{
   render() {
     const filterText = this.props.filterText;
     const done = this.props.done;
+    const category = this.props.category;
     let items = [];
 
     this.props.items.forEach((item, index) => {
@@ -14,9 +15,12 @@ class TodoList extends Component{
       if (!done && item.done) {
         return;
       }
+      if (item.category !== category) {
+        return;
+      }
 
       items.push(
-        <TodoListItem key={index} item={item} index={index}
+        <TaskListItem key={index} item={item} index={index}
           removeItem={this.props.removeItem}
           markTodoDone={this.props.markTodoDone}
         />
@@ -29,4 +33,4 @@ class TodoList extends Component{
   }
 }
 
-export default TodoList;
+export default TaskList;

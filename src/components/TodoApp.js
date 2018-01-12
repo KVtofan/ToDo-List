@@ -10,11 +10,13 @@ class TodoApp extends Component {
     super(props);
     this.state = {
       filterText: '',
-      done: true
+      done: true,
+      category: ''
     };
 
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
     this.handleShowDoneChange = this.handleShowDoneChange.bind(this);
+    this.handleChooseCategory = this.handleChooseCategory.bind(this);
   }
 
   handleFilterTextChange(filterText) {
@@ -29,6 +31,12 @@ class TodoApp extends Component {
     })
   }
 
+  handleChooseCategory(categoryName) {
+    this.setState({
+      category: categoryName
+    })
+  }
+
   render() {
     return (
       <div id="main">
@@ -36,6 +44,7 @@ class TodoApp extends Component {
         <SearchBar
           filterText={this.state.filterText}
           done={this.state.done}
+          category={this.state.category}
           onFilterTextChange={this.handleFilterTextChange}
           onDoneChange={this.handleShowDoneChange}
         />
@@ -44,10 +53,12 @@ class TodoApp extends Component {
           items={this.props.initItems.tasks}
           filterText={this.state.filterText}
           done={this.state.done}
+          category={this.state.category}
         />
         <hr />
         <Categories
           items={this.props.initItems.categories}
+          handleChooseCategory={this.handleChooseCategory}
         />
       </div>
     );

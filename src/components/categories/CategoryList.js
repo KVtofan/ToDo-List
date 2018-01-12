@@ -8,6 +8,7 @@ class CategoryList extends Component {
         <CategoryListItem key={index} item={item} index={index}
                           removeItem={this.props.removeItem}
                           editCategoryName={this.props.editCategoryName}
+                          handleChooseCategory={this.props.handleChooseCategory}
         />
       );
     });

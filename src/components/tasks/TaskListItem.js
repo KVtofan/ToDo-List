@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class TodoListItem extends Component {
+class TaskListItem extends Component {
   constructor(props) {
     super(props);
     this.onClickClose = this.onClickClose.bind(this);
@@ -42,4 +42,4 @@ class TodoListItem extends Component {
   }
 }
 
-export default TodoListItem;
+export default TaskListItem;

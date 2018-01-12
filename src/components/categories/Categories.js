@@ -13,6 +13,7 @@ class Categories extends Component {
     this.addCategory = this.addCategory.bind(this);
     this.removeCategory = this.removeCategory.bind(this);
     this.editCategoryName = this.editCategoryName.bind(this);
+    this.handleChooseCategory = this.handleChooseCategory.bind(this);
   }
 
   addCategory(categoryItem) {
@@ -30,9 +31,16 @@ class Categories extends Component {
 
   editCategoryName(itemIndex) {
     let newCategoryName  = prompt('Enter the name of the Category', 'New category name');
+    if (newCategoryName) {
+      JSONdate.categories[itemIndex].value = newCategoryName;;
+      this.setState({ categoryList: JSONdate.categories });
+    }
+  }
 
-    JSONdate.categories[itemIndex].value = newCategoryName;;
-    this.setState({ categoryList: JSONdate.categories });
+  handleChooseCategory(value) {
+    (typeof value === 'number') ?
+    this.props.handleChooseCategory(JSONdate.categories[value].value) :
+    this.props.handleChooseCategory(value);
   }
 
   render() {
@@ -44,6 +52,7 @@ class Categories extends Component {
         <CategoryList items={this.props.items}
                       removeItem={this.removeCategory}
                       editCategoryName={this.editCategoryName}
+                      handleChooseCategory={this.handleChooseCategory}
         />
       </div>
     )

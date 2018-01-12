@@ -11,24 +11,38 @@ class CategoryListItem extends Component {
 
     this.onClickRemove = this.onClickRemove.bind(this);
     this.handleEditCategoryName = this.handleEditCategoryName.bind(this);
+    this.handleChooseCategory = this.handleChooseCategory.bind(this);
 
     this.handleAddSubcategory = this.handleAddSubcategory.bind(this);
     this.handleRemoveSubcategory = this.handleRemoveSubcategory.bind(this);
     this.handleEditSubcategoryName = this.handleEditSubcategoryName.bind(this);
     this.handleShowSubcategories = this.handleShowSubcategories.bind(this);
+    this.handleChooseSubcategory = this.handleChooseSubcategory.bind(this);
   }
 
-  onClickRemove() {
+  onClickRemove(e) {
+    e.stopPropagation();
+
     let index = parseInt(this.props.index, 10);
     this.props.removeItem(index);
   }
 
-  handleEditCategoryName() {
+  handleEditCategoryName(e) {
+    e.stopPropagation();
+
     let index = parseInt(this.props.index, 10);
     this.props.editCategoryName(index);
   }
 
-  handleAddSubcategory() {
+  handleChooseCategory(e) {
+    e.stopPropagation();
+
+    let index = parseInt(this.props.index, 10);
+    this.props.handleChooseCategory(index);
+  }
+
+  handleAddSubcategory(e) {
+    e.stopPropagation();
     if (!this.state.subcategoryList) return;
 
     let subcategoryList = this.state.subcategoryList;
@@ -52,13 +66,21 @@ class CategoryListItem extends Component {
     let newCategoryName  = prompt('Enter the name of the Subcategory', 'New subcategory name');
     let subcategoryList = this.state.subcategoryList;
 
-    subcategoryList[itemIndex].value = newCategoryName;;
-    this.setState({ subcategoryList: subcategoryList });
+    if (newCategoryName) {
+      subcategoryList[itemIndex].value = newCategoryName;;
+      this.setState({ subcategoryList: subcategoryList });
+    }
   }
 
-  handleShowSubcategories() {
+  handleShowSubcategories(e) {
+    e.stopPropagation();
+
     let showSubcategories = !this.state.showSubcategories;
     this.setState({ showSubcategories: showSubcategories });
+  }
+
+  handleChooseSubcategory(itemIndex) {
+    this.props.handleChooseCategory(this.state.subcategoryList[itemIndex].value);
   }
 
   render () {
@@ -67,14 +89,14 @@ class CategoryListItem extends Component {
 
     return (
       <div>
-        <li className="list-group-item">
+        <li className="list-group-item" onClick={this.handleChooseCategory}>
           <button
             type="button"
             className="showSubcategories"
             onClick={this.handleShowSubcategories}>
             <i className={showButtonClass}></i>
           </button>
-          {this.props.item.value}  
+          {this.props.item.value}
           <button
             type="button"
             className="editCategoryName"
@@ -99,6 +121,7 @@ class CategoryListItem extends Component {
             <CategoryList items={this.props.item.subcategories}
                           removeItem={this.handleRemoveSubcategory}
                           editCategoryName={this.handleEditSubcategoryName}
+                          handleChooseCategory={this.handleChooseSubcategory}
             />
           </li>
         }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TodoList from './TodoList';
+import TaskList from './TaskList';
 import AddItemForm from './../AddItemForm';
 import JSONdate from './../../data.json';
 
@@ -43,9 +43,10 @@ class Tasks extends Component{
       <div className="tasks">
         <AddItemForm addItem={this.addItem} target={'To-Do'}/>
         <br />
-        <TodoList items={this.props.items}
+        <TaskList items={this.props.items}
                   filterText={this.props.filterText}
                   done={this.props.done}
+                  category={this.props.category}
                   removeItem={this.removeItem}
                   markTodoDone={this.markTodoDone}
         />
