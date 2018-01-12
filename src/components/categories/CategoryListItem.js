@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CategoryList from './CategoryList'
+import SingleCategory from './SingleCategory';
 
 class CategoryListItem extends Component {
   constructor(props) {
@@ -9,36 +10,11 @@ class CategoryListItem extends Component {
       showSubcategories: false,
     }
 
-    this.onClickRemove = this.onClickRemove.bind(this);
-    this.handleEditCategoryName = this.handleEditCategoryName.bind(this);
-    this.handleChooseCategory = this.handleChooseCategory.bind(this);
-
     this.handleAddSubcategory = this.handleAddSubcategory.bind(this);
     this.handleRemoveSubcategory = this.handleRemoveSubcategory.bind(this);
     this.handleEditSubcategoryName = this.handleEditSubcategoryName.bind(this);
     this.handleShowSubcategories = this.handleShowSubcategories.bind(this);
     this.handleChooseSubcategory = this.handleChooseSubcategory.bind(this);
-  }
-
-  onClickRemove(e) {
-    e.stopPropagation();
-
-    let index = parseInt(this.props.index, 10);
-    this.props.removeItem(index);
-  }
-
-  handleEditCategoryName(e) {
-    e.stopPropagation();
-
-    let index = parseInt(this.props.index, 10);
-    this.props.editCategoryName(index);
-  }
-
-  handleChooseCategory(e) {
-    e.stopPropagation();
-
-    let index = parseInt(this.props.index, 10);
-    this.props.handleChooseCategory(index);
   }
 
   handleAddSubcategory(e) {
@@ -89,34 +65,17 @@ class CategoryListItem extends Component {
 
     return (
       <div>
-        <li className="list-group-item" onClick={this.handleChooseCategory}>
-          <button
-            type="button"
-            className="showSubcategories"
-            onClick={this.handleShowSubcategories}>
-            <i className={showButtonClass}></i>
-          </button>
-          {this.props.item.value}
-          <button
-            type="button"
-            className="editCategoryName"
-            onClick={this.handleEditCategoryName}>
-            <i className="fa fa-pencil-square-o"></i>
-          </button>
-          <button
-            type="button"
-            className="close"
-            onClick={this.onClickRemove}>
-            &#128465;
-          </button>
-          <button
-            type="button"
-            className="addSubcategory"
-            onClick={this.handleAddSubcategory}>
-            +
-          </button>
-        </li>
-        {(this.state.showSubcategories && this.props.item.subcategories) &&
+        <SingleCategory
+          item={this.props.item} index={this.props.index}
+          removeItem={this.props.removeItem}
+          editCategoryName={this.props.editCategoryName}
+          handleChooseCategory={this.props.handleChooseCategory}
+          handleShowSubcategories={this.handleShowSubcategories}
+          handleAddSubcategory={this.handleAddSubcategory}
+          showButtonClass={showButtonClass}
+        />
+        {(this.state.showSubcategories &&
+          this.props.item.subcategories) &&
           <li className="list-group-item">
             <CategoryList items={this.props.item.subcategories}
                           removeItem={this.handleRemoveSubcategory}
