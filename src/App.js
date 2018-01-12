@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TodoApp from './todo-marekdano/TodoApp';
+import TodoApp from './components/TodoApp';
 import JSONdate from './data.json';
 
 class App extends Component {

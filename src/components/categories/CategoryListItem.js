@@ -74,7 +74,7 @@ class CategoryListItem extends Component {
             onClick={this.handleShowSubcategories}>
             <i className={showButtonClass}></i>
           </button>
-          {this.props.item.value}
+          {this.props.item.value}  
           <button
             type="button"
             className="editCategoryName"
