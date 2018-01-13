@@ -30,6 +30,8 @@
     {"category":"Category 2","value":"2learn react","done":false},
     {"category":"Category 3","value":"3Go shopping","done":false},
     {"category":"Category 2","value":"2Make To-Do","done":true},
-    {"category":"Category 4","value":"4buy flowers","done":true}
+    {"category":"Category 4","value":"4buy flowers","done":true},
+    {"category":"Subcategory 1","value":"sub1 learn react","done":false},
+    {"category":"Subcategory 1","value":"sub 1Go shopping","done":false}
   ]
 }

@@ -32,7 +32,7 @@ class SingleCategory extends Component {
 
   render() {
     return(
-      <li className="list-group-item" onClick={this.handleChooseCategory}>
+      <li className="list-group-item singleCategory" onClick={this.handleChooseCategory}>
         <div className="categoryItem">
           { this.props.item.subcategories &&
             <button

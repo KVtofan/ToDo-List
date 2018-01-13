@@ -76,7 +76,7 @@ class CategoryListItem extends Component {
         />
         {(this.state.showSubcategories &&
           this.props.item.subcategories) &&
-          <li className="list-group-item">
+          <li className="subcategories">
             <CategoryList items={this.props.item.subcategories}
                           removeItem={this.handleRemoveSubcategory}
                           editCategoryName={this.handleEditSubcategoryName}
