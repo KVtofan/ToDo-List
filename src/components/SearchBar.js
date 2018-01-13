@@ -17,23 +17,23 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <form>
+      <form className="searchBar form-inline">
+          <label>
+            <input
+              type="checkbox"
+              checked={this.props.done}
+              onChange={this.handleDoneChange}
+              className="form-check-input"
+            />
+            Show done
+          </label>
         <input
           type="text"
           placeholder="Search..."
           value={this.props.filterText}
           onChange={this.handleFilterTextChange}
+          className="form-control"
         />
-      <p>
-        <label>
-          <input
-            type="checkbox"
-            checked={this.props.done}
-            onChange={this.handleDoneChange}
-          />
-          Show done
-        </label>
-      </p>
       </form>
     );
   }

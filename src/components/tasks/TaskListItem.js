@@ -22,7 +22,7 @@ class TaskListItem extends Component {
         'done' : 'undone';
 
     return (
-      <li className="list-group-item ">
+      <li className="list-group-item">
         <div className={todoClass}>
           <input
             type="checkbox"

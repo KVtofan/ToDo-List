@@ -40,26 +40,29 @@ class TodoApp extends Component {
   render() {
     return (
       <div id="main">
+        <header>
+          <TodoHeader />
+          <SearchBar
+            filterText={this.state.filterText}
+            done={this.state.done}
+            category={this.state.category}
+            onFilterTextChange={this.handleFilterTextChange}
+            onDoneChange={this.handleShowDoneChange}
+          />
+        </header>
         <hr />
-        <SearchBar
-          filterText={this.state.filterText}
-          done={this.state.done}
-          category={this.state.category}
-          onFilterTextChange={this.handleFilterTextChange}
-          onDoneChange={this.handleShowDoneChange}
-        />
-        <TodoHeader />
-        <Tasks
-          items={this.props.initItems.tasks}
-          filterText={this.state.filterText}
-          done={this.state.done}
-          category={this.state.category}
-        />
-        <hr />
-        <Categories
-          items={this.props.initItems.categories}
-          handleChooseCategory={this.handleChooseCategory}
-        />
+        <main>
+          <Categories
+            items={this.props.initItems.categories}
+            handleChooseCategory={this.handleChooseCategory}
+          />
+          <Tasks
+            items={this.props.initItems.tasks}
+            filterText={this.state.filterText}
+            done={this.state.done}
+            category={this.state.category}
+          />
+        </main>
       </div>
     );
   }

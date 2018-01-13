@@ -33,31 +33,39 @@ class SingleCategory extends Component {
   render() {
     return(
       <li className="list-group-item" onClick={this.handleChooseCategory}>
-        <button
-          type="button"
-          className="showSubcategories"
-          onClick={this.props.handleShowSubcategories}>
-          <i className={this.props.showButtonClass}></i>
-        </button>
-        {this.props.item.value}
-        <button
-          type="button"
-          className="editCategoryName"
-          onClick={this.handleEditCategoryName}>
-          <i className="fa fa-pencil-square-o"></i>
-        </button>
-        <button
-          type="button"
-          className="close"
-          onClick={this.handleRemoveCategory}>
-          &#128465;
-        </button>
-        <button
-          type="button"
-          className="addSubcategory"
-          onClick={this.props.handleAddSubcategory}>
-          +
-        </button>
+        <div className="categoryItem">
+          { this.props.item.subcategories &&
+            <button
+              type="button"
+              className="showSubcategories"
+              onClick={this.props.handleShowSubcategories}>
+              <i className={this.props.showButtonClass}></i>
+            </button>
+          }
+          {this.props.item.value}
+          <button
+            type="button"
+            className="editCategoryName"
+            onClick={this.handleEditCategoryName}>
+            <i className="fa fa-pencil-square-o"></i>
+          </button>
+        </div>
+        <div className="categoryControlls">
+          <button
+            type="button"
+            className="RemoveCategory"
+            onClick={this.handleRemoveCategory}>
+            <i className="fa fa-trash-o"></i>
+          </button>
+          { this.props.item.subcategories &&
+            <button
+              type="button"
+              className="addSubcategory"
+              onClick={this.props.handleAddSubcategory}>
+              +
+            </button>
+          }
+        </div>
       </li>
     );
   }

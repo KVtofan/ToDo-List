@@ -45,7 +45,6 @@ class Categories extends Component {
 
   render() {
     return (
-
       <div className="categories">
         <AddItemForm addItem={this.addCategory} target={'Category'}/>
         <br />

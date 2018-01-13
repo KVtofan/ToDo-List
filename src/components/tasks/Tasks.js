@@ -17,9 +17,12 @@ class Tasks extends Component{
 
   addItem(todoItem) {
     JSONdate.tasks.unshift({
+      category: this.props.category,
       value: todoItem.newItemValue,
       done: false
     });
+
+    console.log('add');
 
     this.setState({ taskList: JSONdate.tasks });
   }
