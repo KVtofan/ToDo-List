@@ -1,29 +1,21 @@
 import React, { Component } from 'react';
 
 class SingleCategory extends Component {
-  constructor(props) {
-    super(props);
-
-    this.handleRemoveCategory = this.handleRemoveCategory.bind(this);
-    this.handleEditCategoryName = this.handleEditCategoryName.bind(this);
-    this.handleChooseCategory = this.handleChooseCategory.bind(this);
-  }
-
-  handleRemoveCategory(e) {
+  handleRemoveCategory = (e) => {
     e.stopPropagation();
 
     let index = parseInt(this.props.index, 10);
     this.props.removeItem(index);
   }
 
-  handleEditCategoryName(e) {
+  handleEditCategoryName = (e) => {
     e.stopPropagation();
 
     let index = parseInt(this.props.index, 10);
     this.props.editCategoryName(index);
   }
 
-  handleChooseCategory(e) {
+  handleChooseCategory = (e) => {
     e.stopPropagation();
 
     let index = parseInt(this.props.index, 10);

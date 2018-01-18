@@ -8,38 +8,34 @@ import Categories from './categories/Categories';
 class TodoApp extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       filterText: '',
       done: true,
       category: '',
       editMode: false,
     };
-
-    this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
-    this.handleShowDoneChange = this.handleShowDoneChange.bind(this);
-    this.handleChooseCategory = this.handleChooseCategory.bind(this);
-    this.handleToggleEditMode = this.handleToggleEditMode.bind(this);
   }
 
-  handleFilterTextChange(filterText) {
+  handleFilterTextChange = (filterText) => {
     this.setState({
       filterText: filterText
     });
   }
 
-  handleShowDoneChange(done) {
+  handleShowDoneChange = (done) => {
     this.setState({
       done: done
     })
   }
 
-  handleChooseCategory(categoryName) {
+  handleChooseCategory = (categoryName) => {
     this.setState({
       category: categoryName
     })
   }
 
-  handleToggleEditMode(editMode) {
+  handleToggleEditMode = (editMode) => {
     this.setState({
       editMode: editMode
     })

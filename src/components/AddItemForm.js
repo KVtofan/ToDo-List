@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 
 class AddItemForm extends Component{
-  constructor(props) {
-    super(props);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  onSubmit(event) {
+  onSubmit = (event) => {
     event.preventDefault();
     let newItemValue = this.refs.itemName.value;
 

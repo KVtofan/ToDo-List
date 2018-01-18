@@ -5,19 +5,14 @@ import SingleCategory from './SingleCategory';
 class CategoryListItem extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       subcategoryList: this.props.item.subcategories,
       showSubcategories: false,
     }
-
-    this.handleAddSubcategory = this.handleAddSubcategory.bind(this);
-    this.handleRemoveSubcategory = this.handleRemoveSubcategory.bind(this);
-    this.handleEditSubcategoryName = this.handleEditSubcategoryName.bind(this);
-    this.handleShowSubcategories = this.handleShowSubcategories.bind(this);
-    this.handleChooseSubcategory = this.handleChooseSubcategory.bind(this);
   }
 
-  handleAddSubcategory(e) {
+  handleAddSubcategory = (e) => {
     e.stopPropagation();
     if (!this.state.subcategoryList) return;
 
@@ -31,14 +26,14 @@ class CategoryListItem extends Component {
     this.setState({ subcategoryList: subcategoryList });
   }
 
-  handleRemoveSubcategory(itemIndex) {
+  handleRemoveSubcategory = (itemIndex) => {
     let subcategoryList = this.state.subcategoryList;
 
     subcategoryList.splice(itemIndex, 1);
     this.setState({ subcategoryList: subcategoryList });
   }
 
-  handleEditSubcategoryName(itemIndex) {
+  handleEditSubcategoryName = (itemIndex) => {
     let newCategoryName  = prompt('Enter the name of the Subcategory', 'New subcategory name');
     let subcategoryList = this.state.subcategoryList;
 
@@ -48,14 +43,14 @@ class CategoryListItem extends Component {
     }
   }
 
-  handleShowSubcategories(e) {
+  handleShowSubcategories = (e) => {
     e.stopPropagation();
 
     let showSubcategories = !this.state.showSubcategories;
     this.setState({ showSubcategories: showSubcategories });
   }
 
-  handleChooseSubcategory(itemIndex) {
+  handleChooseSubcategory = (itemIndex) => {
     this.props.handleChooseCategory(this.state.subcategoryList[itemIndex].value);
   }
 

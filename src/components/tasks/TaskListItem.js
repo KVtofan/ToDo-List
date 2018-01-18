@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 
 class TaskListItem extends Component {
-  constructor(props) {
-    super(props);
-    this.onClickClose = this.onClickClose.bind(this);
-    this.onClickDone = this.onClickDone.bind(this);
-  }
-
-  onClickDone() {
+  onClickDone = () => {
     let index = parseInt(this.props.index, 10);
     this.props.markTodoDone(index);
   }
 
-  onClickClose() {
+  onClickClose = () => {
     let index = parseInt(this.props.index, 10);
     this.props.removeItem(index);
   }

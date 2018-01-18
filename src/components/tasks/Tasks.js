@@ -7,18 +7,14 @@ import JSONdate from './../../data.json';
 class Tasks extends Component{
   constructor(props) {
     super(props);
+
     this.state = {
       taskList: JSONdate.tasks,
       elementToEditIndex : undefined
     }
-
-    this.addItem = this.addItem.bind(this);
-    this.removeItem = this.removeItem.bind(this);
-    this.editItem = this.editItem.bind(this);
-    this.markTodoDone = this.markTodoDone.bind(this);
   }
 
-  addItem(todoItem) {
+  addItem = (todoItem) => {
     JSONdate.tasks.unshift({
       category: this.props.category,
       value: todoItem.newItemValue,
@@ -29,12 +25,12 @@ class Tasks extends Component{
     this.setState({ taskList: JSONdate.tasks });
   }
 
-  removeItem(itemIndex) {
+  removeItem = (itemIndex) => {
     JSONdate.tasks.splice(itemIndex, 1);
     this.setState({ taskList: JSONdate.tasks });
   }
 
-  editItem(editedTask) {
+  editItem = (editedTask) => {
     JSONdate.tasks.splice(this.state.elementToEditIndex, 1, editedTask);
     this.setState({ taskList: JSONdate.tasks });
   }
@@ -44,7 +40,7 @@ class Tasks extends Component{
     this.props.handleToggleEditMode(true);
   }
 
-  markTodoDone(itemIndex) {
+  markTodoDone = (itemIndex) => {
     let todo = JSONdate.tasks[itemIndex];
     JSONdate.tasks.splice(itemIndex, 1);
     todo.done = !todo.done;

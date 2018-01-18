@@ -4,6 +4,7 @@ class EditTask extends Component {
   constructor(props) {
     super(props);
     let element= this.props.elementToEdit;
+
     this.state = {
       category: element.category,
       value: element.value,
@@ -30,7 +31,7 @@ class EditTask extends Component {
     })
   }
 
-  handleSaveChanges = () => { 
+  handleSaveChanges = () => {
     this.props.editItem(this.state);
     this.props.handleToggleEditMode(false);
   }
