@@ -11,12 +11,14 @@ class TodoApp extends Component {
     this.state = {
       filterText: '',
       done: true,
-      category: ''
+      category: '',
+      editMode: true,
     };
 
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
     this.handleShowDoneChange = this.handleShowDoneChange.bind(this);
     this.handleChooseCategory = this.handleChooseCategory.bind(this);
+    this.handleToggleEditMode = this.handleToggleEditMode.bind(this);
   }
 
   handleFilterTextChange(filterText) {
@@ -37,31 +39,42 @@ class TodoApp extends Component {
     })
   }
 
+  handleToggleEditMode(editMode) {
+    this.setState({
+      editMode: editMode
+    })
+  }
+
   render() {
     return (
       <div id="main">
         <header>
           <TodoHeader />
-          <SearchBar
-            filterText={this.state.filterText}
-            done={this.state.done}
-            category={this.state.category}
-            onFilterTextChange={this.handleFilterTextChange}
-            onDoneChange={this.handleShowDoneChange}
-          />
+          { !this.state.editMode &&
+            <SearchBar
+              filterText={this.state.filterText}
+              done={this.state.done}
+              category={this.state.category}
+              onFilterTextChange={this.handleFilterTextChange}
+              onDoneChange={this.handleShowDoneChange}
+            />
+          }
         </header>
         <hr />
         <main>
           <Categories
             items={this.props.initItems.categories}
             handleChooseCategory={this.handleChooseCategory}
+            editMode={this.state.editMode}
           />
-          <Tasks
-            items={this.props.initItems.tasks}
-            filterText={this.state.filterText}
-            done={this.state.done}
-            category={this.state.category}
-          />
+            <Tasks
+              items={this.props.initItems.tasks}
+              filterText={this.state.filterText}
+              done={this.state.done}
+              category={this.state.category}
+              editMode={this.state.editMode}
+              handleToggleEditMode={this.handleToggleEditMode}
+            />
         </main>
       </div>
     );

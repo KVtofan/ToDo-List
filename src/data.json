@@ -25,6 +25,8 @@
   "tasks":[
     {"category":"Category 1","value":"1learn react","done":false},
     {"category":"Category 1","value":"1Go shopping","done":false},
+    {"category":"Category 1","value":"1Fix the Layout","done":false},
+    {"category":"Category 1","value":"1Create SubCategories","done":false},
     {"category":"Category 1","value":"1Make To-Do","done":true},
     {"category":"Category 1","value":"1buy flowers","done":true},
     {"category":"Category 2","value":"2learn react","done":false},

@@ -9,6 +9,7 @@ class CategoryList extends Component {
                           removeItem={this.props.removeItem}
                           editCategoryName={this.props.editCategoryName}
                           handleChooseCategory={this.props.handleChooseCategory}
+                          editMode={this.props.editMode}
         />
       );
     });

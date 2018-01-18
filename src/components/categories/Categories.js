@@ -30,7 +30,7 @@ class Categories extends Component {
   }
 
   editCategoryName(itemIndex) {
-    let newCategoryName  = prompt('Enter the name of the Category', 'New category name');
+    let newCategoryName  = prompt('Enter the name of the Category', JSONdate.categories[itemIndex].value);
     if (newCategoryName) {
       JSONdate.categories[itemIndex].value = newCategoryName;;
       this.setState({ categoryList: JSONdate.categories });
@@ -46,12 +46,15 @@ class Categories extends Component {
   render() {
     return (
       <div className="categories">
+        { !this.props.editMode &&
         <AddItemForm addItem={this.addCategory} target={'Category'}/>
+        }
         <br />
         <CategoryList items={this.props.items}
                       removeItem={this.removeCategory}
                       editCategoryName={this.editCategoryName}
                       handleChooseCategory={this.handleChooseCategory}
+                      editMode={this.props.editMode}
         />
       </div>
     )

@@ -43,26 +43,37 @@ class SingleCategory extends Component {
             </button>
           }
           {this.props.item.value}
-          <button
-            type="button"
-            className="editCategoryName"
-            onClick={this.handleEditCategoryName}>
-            <i className="fa fa-pencil-square-o"></i>
-          </button>
-        </div>
-        <div className="categoryControlls">
-          <button
-            type="button"
-            className="RemoveCategory"
-            onClick={this.handleRemoveCategory}>
-            <i className="fa fa-trash-o"></i>
-          </button>
-          { this.props.item.subcategories &&
+          { !this.props.editMode &&
             <button
               type="button"
-              className="addSubcategory"
-              onClick={this.props.handleAddSubcategory}>
-              +
+              className="editCategoryName"
+              onClick={this.handleEditCategoryName}>
+              <i className="fa fa-pencil-square-o"></i>
+            </button>
+          }
+        </div>
+        <div className="categoryControlls">
+          { !this.props.editMode &&
+            <button
+              type="button"
+              className="RemoveCategory"
+              onClick={this.handleRemoveCategory}>
+              <i className="fa fa-trash-o"></i>
+            </button>
+            // { this.props.item.subcategories &&
+            //   <button
+            //     type="button"
+            //     className="addSubcategory"
+            //     onClick={this.props.handleAddSubcategory}>
+            //     +
+            //   </button>
+            // }
+          }
+          { this.props.editMode &&
+            <button
+              type="button"
+              className="move">
+              <i className="fa fa-long-arrow-left"></i>
             </button>
           }
         </div>

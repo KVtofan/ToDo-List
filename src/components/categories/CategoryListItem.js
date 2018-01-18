@@ -73,6 +73,7 @@ class CategoryListItem extends Component {
           handleShowSubcategories={this.handleShowSubcategories}
           handleAddSubcategory={this.handleAddSubcategory}
           showButtonClass={showButtonClass}
+          editMode={this.props.editMode}
         />
         {(this.state.showSubcategories &&
           this.props.item.subcategories) &&
@@ -81,6 +82,7 @@ class CategoryListItem extends Component {
                           removeItem={this.handleRemoveSubcategory}
                           editCategoryName={this.handleEditSubcategoryName}
                           handleChooseCategory={this.handleChooseSubcategory}
+                          editMode={this.props.editMode}
             />
           </li>
         }

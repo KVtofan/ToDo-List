@@ -21,7 +21,7 @@ class AddItemForm extends Component{
 
     return (
       <form ref="form" onSubmit={this.onSubmit} className="form-inline">
-        <input type="text" ref="itemName" className="form-control"
+        <input type="text" ref="itemName"     className="form-control"
                placeholder={placeholder}
         />
         <button type="submit" className="btn btn-default">Add</button>
