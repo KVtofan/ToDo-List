@@ -12,7 +12,7 @@ class TodoApp extends Component {
       filterText: '',
       done: true,
       category: '',
-      editMode: true,
+      editMode: false,
     };
 
     this.handleFilterTextChange = this.handleFilterTextChange.bind(this);

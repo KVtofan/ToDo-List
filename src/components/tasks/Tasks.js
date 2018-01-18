@@ -8,7 +8,8 @@ class Tasks extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      taskList: JSONdate.tasks
+      taskList: JSONdate.tasks,
+      elementToEditIndex : undefined
     }
 
     this.addItem = this.addItem.bind(this);
@@ -21,10 +22,9 @@ class Tasks extends Component{
     JSONdate.tasks.unshift({
       category: this.props.category,
       value: todoItem.newItemValue,
-      done: false
+      done: false,
+      description: 'Description'
     });
-
-    console.log('add');
 
     this.setState({ taskList: JSONdate.tasks });
   }
@@ -34,9 +34,14 @@ class Tasks extends Component{
     this.setState({ taskList: JSONdate.tasks });
   }
 
-  editItem(itemIndex, editedTask) {
-    JSONdate.tasks.splice(itemIndex, 1, editedTask);
+  editItem(editedTask) {
+    JSONdate.tasks.splice(this.state.elementToEditIndex, 1, editedTask);
     this.setState({ taskList: JSONdate.tasks });
+  }
+
+  handleEditItem = (itemIndex) => {
+    this.setState({ elementToEditIndex: itemIndex });
+    this.props.handleToggleEditMode(true);
   }
 
   markTodoDone(itemIndex) {
@@ -60,12 +65,15 @@ class Tasks extends Component{
                       category={this.props.category}
                       removeItem={this.removeItem}
                       markTodoDone={this.markTodoDone}
+                      handleEditItem={this.handleEditItem}
             />
           </div>
       )
     } else {
       return (
-        <EditTask editItem={this.state.editItem}
+        <EditTask editItem={this.editItem}
+          elementToEdit={this.state.taskList[this.state.elementToEditIndex]}
+          handleToggleEditMode={this.props.handleToggleEditMode}
         />
       );
     }

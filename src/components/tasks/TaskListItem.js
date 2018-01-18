@@ -17,6 +17,11 @@ class TaskListItem extends Component {
     this.props.removeItem(index);
   }
 
+  onClickEdit = () =>{
+    let index = parseInt(this.props.index, 10);
+    this.props.handleEditItem(index);
+  }
+
   render () {
     let todoClass = this.props.item.done ?
         'done' : 'undone';
@@ -30,6 +35,12 @@ class TaskListItem extends Component {
             onChange={this.onClickDone}
           />
           {this.props.item.value}
+          <button
+            type="button"
+            className="edit btn btn-light"
+            onClick={this.onClickEdit}>
+            <i className="fa fa-pencil-square-o"></i>
+          </button>
           <button
             type="button"
             className="close"

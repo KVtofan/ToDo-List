@@ -23,6 +23,7 @@ class TaskList extends Component{
         <TaskListItem key={index} item={item} index={index}
           removeItem={this.props.removeItem}
           markTodoDone={this.props.markTodoDone}
+          handleEditItem={this.props.handleEditItem}
         />
       );
     });
