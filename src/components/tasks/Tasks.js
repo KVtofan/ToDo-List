@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TaskList from './TaskList';
-import EditTask from './EditTask';
+import EditTaskContainer from './../../containers/EditTaskContainer';
 import AddItemForm from './../AddItemForm';
 
 class Tasks extends Component{
@@ -22,7 +22,7 @@ class Tasks extends Component{
       )
     } else {
       return (
-        <EditTask editItem={this.props.editItem}
+        <EditTaskContainer editItem={this.props.editItem}
                   elementToEdit={this.props.elementToEdit}
                   handleToggleEditMode={this.props.handleToggleEditMode}
         />
