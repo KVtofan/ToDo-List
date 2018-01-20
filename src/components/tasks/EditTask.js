@@ -13,6 +13,8 @@ class EditTask extends Component {
     }
   }
 
+  handleSubmit = (e) => { e.preventDefault(); }
+
   handleTaskNameChange = (e) => {
     this.setState({
       value: e.target.value
@@ -57,7 +59,8 @@ class EditTask extends Component {
             Cancel
           </button>
         </div>
-        <form className="editTaskForm">
+        <form className="editTaskForm"
+              onSubmit={this.handleSubmit}>
           <input type="text"
                  className="form-control"
                  value={this.state.value}

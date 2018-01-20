@@ -4,72 +4,36 @@ import SearchBar from './SearchBar';
 import Tasks from './tasks/Tasks';
 import Categories from './categories/Categories';
 
-
 class TodoApp extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      filterText: '',
-      done: true,
-      category: '',
-      editMode: false,
-    };
-  }
-
-  handleFilterTextChange = (filterText) => {
-    this.setState({
-      filterText: filterText
-    });
-  }
-
-  handleShowDoneChange = (done) => {
-    this.setState({
-      done: done
-    })
-  }
-
-  handleChooseCategory = (categoryName) => {
-    this.setState({
-      category: categoryName
-    })
-  }
-
-  handleToggleEditMode = (editMode) => {
-    this.setState({
-      editMode: editMode
-    })
-  }
-
   render() {
     return (
       <div id="main">
         <header>
           <TodoHeader />
-          { !this.state.editMode &&
+          { !this.props.editMode &&
             <SearchBar
-              filterText={this.state.filterText}
-              done={this.state.done}
-              category={this.state.category}
-              onFilterTextChange={this.handleFilterTextChange}
-              onDoneChange={this.handleShowDoneChange}
+              filterText={this.props.filterText}
+              done={this.props.done}
+              category={this.props.category}
+              onFilterTextChange={this.props.handleFilterTextChange}
+              onDoneChange={this.props.handleShowDoneChange}
             />
           }
         </header>
         <hr />
         <main>
           <Categories
-            items={this.props.initItems.categories}
-            handleChooseCategory={this.handleChooseCategory}
-            editMode={this.state.editMode}
+            items={this.props.items.categories}
+            handleChooseCategory={this.props.handleChooseCategory}
+            editMode={this.props.editMode}
           />
             <Tasks
-              items={this.props.initItems.tasks}
-              filterText={this.state.filterText}
-              done={this.state.done}
-              category={this.state.category}
-              editMode={this.state.editMode}
-              handleToggleEditMode={this.handleToggleEditMode}
+              items={this.props.items.tasks}
+              filterText={this.props.filterText}
+              done={this.props.done}
+              category={this.props.category}
+              editMode={this.props.editMode}
+              handleToggleEditMode={this.props.handleToggleEditMode}
             />
         </main>
       </div>
