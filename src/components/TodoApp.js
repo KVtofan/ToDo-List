@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TodoHeader from './TodoHeader';
 import SearchBar from './SearchBar';
-import Tasks from './tasks/Tasks';
+import TasksContainer from './../containers/TasksContainer';
 import Categories from './categories/Categories';
 
 class TodoApp extends Component {
@@ -27,7 +27,7 @@ class TodoApp extends Component {
             handleChooseCategory={this.props.handleChooseCategory}
             editMode={this.props.editMode}
           />
-            <Tasks
+            <TasksContainer
               items={this.props.items.tasks}
               filterText={this.props.filterText}
               done={this.props.done}

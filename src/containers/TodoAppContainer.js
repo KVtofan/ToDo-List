@@ -52,7 +52,7 @@ class TodoAppContainer extends Component {
 
         handleToggleEditMode={this.handleToggleEditMode}
       />
-    )
+    );
   }
 }
 
