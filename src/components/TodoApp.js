@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TodoHeader from './TodoHeader';
 import SearchBar from './SearchBar';
 import TasksContainer from './../containers/TasksContainer';
-import Categories from './categories/Categories';
+import CategoriesContainer from './../containers/CategoriesContainer';
 
 class TodoApp extends Component {
   render() {
@@ -22,7 +22,7 @@ class TodoApp extends Component {
         </header>
         <hr />
         <main>
-          <Categories
+          <CategoriesContainer
             items={this.props.items.categories}
             handleChooseCategory={this.props.handleChooseCategory}
             editMode={this.props.editMode}
