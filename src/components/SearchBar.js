@@ -1,36 +1,41 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types'
 
-class SearchBar extends Component {
-  handleFilterTextChange = (e) => {
-    this.props.onFilterTextChange(e.target.value)
-  }
-
-  handleDoneChange = (e) => {
-    this.props.onDoneChange(e.target.checked);
-  }
-
-  render() {
-    return (
-      <form className="searchBar form-inline">
-          <label>
-            <input
-              type="checkbox"
-              checked={this.props.done}
-              onChange={this.handleDoneChange}
-              className="form-check-input"
-            />
-            Show done
-          </label>
+const SearchBar =(
+  {
+  searchText, done,
+  handleChangeSearch, handleChangeDone
+  }) => {
+  return (
+    <form
+      onSubmit={e => e.preventDefault()}
+      className="searchBar form-inline"
+    >
+      <label>
         <input
-          type="text"
-          placeholder="Search..."
-          value={this.props.filterText}
-          onChange={this.handleFilterTextChange}
-          className="form-control"
+          type="checkbox"
+          checked={done}
+          onChange={e=> handleChangeDone(e.target.checked)}
+          className="form-check-input"
         />
-      </form>
-    );
-  }
+        Show done
+      </label>
+      <input
+        type="text"
+        placeholder="Search..."
+        value={searchText}
+        onChange={e => handleChangeSearch(e.target.value)}
+        className="form-control"
+      />
+    </form>
+  );
+}
+
+SearchBar.propTypes = {
+  searchText: PropTypes.string,
+  done: PropTypes.bool,
+  handleChangeSearch: PropTypes.func.isRequired,
+  handleChangeDone: PropTypes.func.isRequired
 }
 
 export default SearchBar;

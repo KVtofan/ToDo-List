@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TodoHeader from './TodoHeader';
-import SearchBar from './SearchBar';
+import SearchBarContainer from './../containers/SearchBarContainer';
 import TasksContainer from './../containers/TasksContainer';
 import CategoriesContainer from './../containers/CategoriesContainer';
 
@@ -11,13 +11,7 @@ class TodoApp extends Component {
         <header>
           <TodoHeader />
           { !this.props.editMode &&
-            <SearchBar
-              filterText={this.props.filterText}
-              done={this.props.done}
-              category={this.props.category}
-              onFilterTextChange={this.props.handleFilterTextChange}
-              onDoneChange={this.props.handleShowDoneChange}
-            />
+            <SearchBarContainer />
           }
         </header>
         <hr />
