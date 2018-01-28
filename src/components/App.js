@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import TodoAppContainer from './containers/TodoAppContainer';
-import JSONdate from './data.json';
+import TodoAppContainer from '../containers/TodoAppContainer';
+import JSONdate from '../data.json';
 
 class App extends Component {
   render() {

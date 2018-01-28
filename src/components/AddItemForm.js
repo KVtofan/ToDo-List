@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class AddItemForm extends Component{
   onSubmit = (event) => {
@@ -6,7 +7,9 @@ class AddItemForm extends Component{
     let newItemValue = this.refs.itemName.value;
 
     if(newItemValue) {
-      this.props.addItem({newItemValue});
+      (this.props.chosenCategoryId)
+        ? this.props.handleAddItem(this.props.chosenCategoryId ,newItemValue)
+        : this.props.handleAddItem(newItemValue);
       this.refs.form.reset();
     }
   }
@@ -23,6 +26,11 @@ class AddItemForm extends Component{
       </form>
     );
   }
+}
+
+AddItemForm.propTypes = {
+  target: PropTypes.string.isRequired,
+  handleAddItem: PropTypes.func.isRequired
 }
 
 export default AddItemForm;

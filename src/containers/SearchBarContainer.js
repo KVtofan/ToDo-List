@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { setSearchFilter, setDoneFilter } from '../actions'
+import { setSearchFilter, setDoneFilter } from '../actions/filters'
 import SearchBar from '../components/SearchBar'
 
 const mapStateToProps = (state) => ({

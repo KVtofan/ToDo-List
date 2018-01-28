@@ -1,24 +1,40 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import AddItemForm from './../AddItemForm';
-import CategoryList from './CategoryList'
+import CategoryList from './CategoryList';
 
-class Categories extends Component {
-  render() {
-    return (
-      <div className="categories">
-        { !this.props.editMode &&
-          <AddItemForm addItem={this.props.addCategory} target={'Category'}/>
-        }
-        <br />
-        <CategoryList items={this.props.items}
-                      removeItem={this.props.removeCategory}
-                      editCategoryName={this.props.editCategoryName}
-                      handleChooseCategory={this.props.handleChooseCategory}
-                      editMode={this.props.editMode}
-        />
-      </div>
-    )
-  }
+const Categories = ({
+  categories, editMode,
+  handleAddCategory, handleRemoveCategory, handleRenameCategory, handleChooseCategory, handleAddSubcategory }) => {
+  return (
+    <div className="categories">
+      { !editMode &&
+        <AddItemForm handleAddItem={handleAddCategory} target={'Category'}/>
+      }
+      <br />
+      <CategoryList
+        items={categories}
+        handleRemoveCategory={handleRemoveCategory}
+        handleRenameCategory={handleRenameCategory}
+        handleChooseCategory={handleChooseCategory}
+        handleAddSubcategory={handleAddSubcategory}
+      />
+    </div>
+  );
+}
+
+Categories.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    tasks: PropTypes.array.isRequired,
+    subCategories: PropTypes.array.isRequired,
+  }).isRequired).isRequired,
+  handleAddCategory: PropTypes.func.isRequired,
+  handleRemoveCategory: PropTypes.func.isRequired,
+  handleRenameCategory: PropTypes.func.isRequired,
+  handleChooseCategory: PropTypes.func.isRequired,
+  handleAddSubcategory: PropTypes.func.isRequired
 }
 
 export default Categories;

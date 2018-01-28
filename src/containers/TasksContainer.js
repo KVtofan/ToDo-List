@@ -1,72 +1,44 @@
-import React, { Component } from 'react';
-import Tasks from './../components/tasks/Tasks';
-import JSONdate from './../data.json';
+import { connect } from 'react-redux'
+import { addTask, toggleTask } from '../actions/tasks'
+import Tasks from '../components/tasks/Tasks'
+import { bfs } from '../utils'
 
-class TasksContainer extends Component {
-  constructor(props) {
-    super(props);
+const getVisibleTasks = (categories, filter) => {
+  if (!filter.chosenCategoryId) { return; }
 
-    this.state = {
-      taskList: JSONdate.tasks,
-      elementToEditIndex : undefined
+  const chosenCategory = bfs(categories, filter.chosenCategoryId);
+
+  const filterFunction = (item) => {
+    if (item.name.indexOf(filter.search) === -1 ||
+        (item.done && !filter.done)) {
+      return false;
     }
-  }
 
-  addItem = (todoItem) => {
-    JSONdate.tasks.unshift({
-      category: this.props.category,
-      value: todoItem.newItemValue,
-      done: false,
-      description: 'Description'
-    });
+    return true;
+  };
 
-    this.setState({ taskList: JSONdate.tasks });
-  }
-
-  removeItem = (itemIndex) => {
-    JSONdate.tasks.splice(itemIndex, 1);
-    this.setState({ taskList: JSONdate.tasks });
-  }
-
-  editItem = (editedTask) => {
-    JSONdate.tasks.splice(this.state.elementToEditIndex, 1, editedTask);
-    this.setState({ taskList: JSONdate.tasks });
-  }
-
-  handleEditItem = (itemIndex) => {
-    this.setState({ elementToEditIndex: itemIndex });
-    this.props.handleToggleEditMode(true);
-  }
-
-  markTodoDone = (itemIndex) => {
-    let todo = JSONdate.tasks[itemIndex];
-    JSONdate.tasks.splice(itemIndex, 1);
-    todo.done = !todo.done;
-    todo.done ? JSONdate.tasks.push(todo) : JSONdate.tasks.unshift(todo);
-
-    this.setState({ taskList: JSONdate.tasks });
-  }
-
-  render() {
-    return (
-      <Tasks
-        editMode={this.props.editMode}
-        addItem={this.addItem}
-
-        items={this.props.items}
-        filterText={this.props.filterText}
-        done={this.props.done}
-        category={this.props.category}
-        removeItem={this.removeItem}
-        markTodoDone={this.markTodoDone}
-        handleEditItem={this.handleEditItem}
-
-        editItem={this.editItem}
-        elementToEdit={this.state.taskList[this.state.elementToEditIndex]}
-        handleToggleEditMode={this.props.handleToggleEditMode}
-      />
-    );
+  if (chosenCategory) {
+    return chosenCategory.tasks.filter(filterFunction);
   }
 }
+
+const mapStateToProps = (state) => ({
+  tasks: getVisibleTasks(state.categories, state.filter),
+  chosenCategoryId: state.filter.chosenCategoryId,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  handleAddTask: (categoryId, taskName) => {
+    dispatch(addTask(categoryId, taskName));
+  },
+  handleToggleTask: (categoryId, taskId) => {
+    dispatch(toggleTask(categoryId, taskId));
+  }
+});
+
+const TasksContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Tasks);
 
 export default TasksContainer;

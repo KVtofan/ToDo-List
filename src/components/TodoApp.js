@@ -16,19 +16,8 @@ class TodoApp extends Component {
         </header>
         <hr />
         <main>
-          <CategoriesContainer
-            items={this.props.items.categories}
-            handleChooseCategory={this.props.handleChooseCategory}
-            editMode={this.props.editMode}
-          />
-            <TasksContainer
-              items={this.props.items.tasks}
-              filterText={this.props.filterText}
-              done={this.props.done}
-              category={this.props.category}
-              editMode={this.props.editMode}
-              handleToggleEditMode={this.props.handleToggleEditMode}
-            />
+          <CategoriesContainer />
+          <TasksContainer /> 
         </main>
       </div>
     );
