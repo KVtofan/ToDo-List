@@ -11,8 +11,8 @@ export const addTask = (categoryId, taskName) => ({
   taskName
 })
 
-export const toggleTask = (categoryId, id) => ({
+export const toggleTask = (categoryId, index) => ({
   type: TOGGLE_TASK,
   categoryId,
-  id
+  index
 })

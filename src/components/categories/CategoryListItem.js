@@ -1,38 +1,31 @@
-import React, { Component } from 'react';
-import CategoryList from './CategoryList'
-import SingleCategory from './SingleCategory';
+import React from 'react';
+import PropTypes from 'prop-types';
+import SingleCategoryContainer from '../../containers/SingleCategoryContainer';
+import CategoryList from './CategoryList';
 
-class CategoryListItem extends Component {
-  render () {
-    let showButtonClass = "fa fa-chevron-" +
-        (this.props.showSubcategories ? "up" : "down");
-
-    return (
-      <div>
-        <SingleCategory
-          item={this.props.item} index={this.props.index}
-          removeItem={this.props.removeItem}
-          editCategoryName={this.props.editCategoryName}
-          handleChooseCategory={this.props.handleChooseCategory}
-          handleShowSubcategories={this.props.handleShowSubcategories}
-          handleAddSubcategory={this.props.handleAddSubcategory}
-          showButtonClass={showButtonClass}
-          editMode={this.props.editMode}
+const CategoryLIstItem = ({
+  category,
+  categories }) => (
+    <div>
+      <SingleCategoryContainer
+        category={category}
+      />
+      <li className="subcategories">
+        <CategoryList
+          ancestorId={category.id}
+          categories={categories}
         />
-      {(this.props.showSubcategories &&
-          this.props.item.subcategories) &&
-          <li className="subcategories">
-            <CategoryList items={this.props.item.subcategories}
-                          removeItem={this.props.handleRemoveSubcategory}
-                          editCategoryName={this.props.handleEditSubcategoryName}
-                          handleChooseCategory={this.props.handleChooseSubcategory}
-                          editMode={this.props.editMode}
-            />
-          </li>
-        }
-      </div>
-    );
-  }
+      </li>
+    </div>
+);
+
+CategoryLIstItem.propTypes = {
+  category: PropTypes.object.isRequired,
+  categories:PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    tasks: PropTypes.array.isRequired,
+  }).isRequired).isRequired,
 }
 
-export default CategoryListItem;
+export default CategoryLIstItem;

@@ -4,8 +4,9 @@ import AddItemForm from './../AddItemForm';
 import CategoryList from './CategoryList';
 
 const Categories = ({
-  categories, editMode,
-  handleAddCategory, handleRemoveCategory, handleRenameCategory, handleChooseCategory, handleAddSubcategory }) => {
+  categories,
+  editMode,
+  handleAddCategory }) => {
   return (
     <div className="categories">
       { !editMode &&
@@ -13,11 +14,7 @@ const Categories = ({
       }
       <br />
       <CategoryList
-        items={categories}
-        handleRemoveCategory={handleRemoveCategory}
-        handleRenameCategory={handleRenameCategory}
-        handleChooseCategory={handleChooseCategory}
-        handleAddSubcategory={handleAddSubcategory}
+        categories={categories}
       />
     </div>
   );
@@ -28,13 +25,9 @@ Categories.propTypes = {
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     tasks: PropTypes.array.isRequired,
-    subCategories: PropTypes.array.isRequired,
   }).isRequired).isRequired,
+  editMode: PropTypes.bool.isRequired,
   handleAddCategory: PropTypes.func.isRequired,
-  handleRemoveCategory: PropTypes.func.isRequired,
-  handleRenameCategory: PropTypes.func.isRequired,
-  handleChooseCategory: PropTypes.func.isRequired,
-  handleAddSubcategory: PropTypes.func.isRequired
 }
 
 export default Categories;

@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class AddItemForm extends Component{
-  onSubmit = (event) => {
+  onSubmit = event => {
     event.preventDefault();
     let newItemValue = this.refs.itemName.value;
 
     if(newItemValue) {
       (this.props.chosenCategoryId)
         ? this.props.handleAddItem(this.props.chosenCategoryId ,newItemValue)
-        : this.props.handleAddItem(newItemValue);
+        : this.props.handleAddItem(0, newItemValue);
       this.refs.form.reset();
     }
   }

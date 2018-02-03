@@ -4,7 +4,8 @@ import SearchBar from '../components/SearchBar'
 
 const mapStateToProps = (state) => ({
   searchText: state.filter.search,
-  done: state.filter.done
+  done: state.filter.done,
+  editMode: state.editMode.isActive,
 })
 
 const mapDispatchToProps = (dispatch) => ({

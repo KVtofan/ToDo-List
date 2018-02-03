@@ -1,30 +1,17 @@
 import { connect } from 'react-redux'
-import { addCategory, removeCategory, renameCategory, chooseCategory, addSubcategory } from '../actions/categories'
-import { setCategoryFilter } from '../actions/filters'
+import { addCategory } from '../actions/categories'
 import Categories from '../components/categories/Categories'
 
 const mapStateToProps = (state) => ({
   categories: state.categories,
-  editMode: state.editMode,
+  editMode: state.editMode.isActive,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handleAddCategory: (categoryName) => {
-    dispatch(addCategory(categoryName));
+  handleAddCategory: (categoryName, ancestorId) => {
+    dispatch(addCategory(categoryName, ancestorId));
   },
-  handleRemoveCategory: (itemIndex) => {
-    dispatch(removeCategory(itemIndex));
-  },
-  handleRenameCategory: (item, newItemName) => {
-    dispatch(renameCategory(item, newItemName));
-  },
-  handleChooseCategory: (chosenCategoryId) => {
-    dispatch(setCategoryFilter(chosenCategoryId));
-  },
-  handleAddSubcategory: (subCategoryId, subCategoryName) => {
-    dispatch(addSubcategory(subCategoryId, subCategoryName));
-  }
-})
+});
 
 const CategoriesContainer = connect(
   mapStateToProps,

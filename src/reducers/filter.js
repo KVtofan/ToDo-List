@@ -15,7 +15,6 @@ export const filter = (state = {}, action) => {
       done: !state.done,
       }
       case SET_CATEGORY_FILTER:
-        console.log(action);
         return {
         ...state,
         chosenCategoryId: action.chosenCategoryId,

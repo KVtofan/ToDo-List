@@ -1,20 +1,23 @@
-
-//  More Information about bfs algorithm:
-//  https://en.wikipedia.org/wiki/Breadth-first_search
-export const bfs = (categories, desiredId) => {
-  let queue = categories.slice();
-
-  while(queue.length > 0){
-    let tempNode = queue.shift();
-
-    if (tempNode.id === desiredId) {
-      return tempNode;
+export const findCategoryById = (categories, desiredId) => {
+  for (let i = 0; i < categories.length; i++) {
+    if (categories[i].id === desiredId) {
+      return categories[i];
     }
-
-    if (!tempNode.subCategories.length) {
-      continue;
-    }
-
-    queue = queue.concat(tempNode.subCategories);
   }
+}
+
+export const markTaskDone = (tasks, index) => {
+  let taskToChange = tasks[index];
+  tasks.splice(index, 1);
+  taskToChange.done = !taskToChange.done;
+  taskToChange.done ? tasks.push(taskToChange) : tasks.unshift(taskToChange);
+  return tasks;
+};
+
+export const overwriteTask = (tasks, newTask) => {
+  return tasks.map(task =>
+    (task.id === newTask.id)
+    ? newTask
+    : task
+  )
 }

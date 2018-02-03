@@ -1,18 +1,19 @@
 import {
-  ADD_CATEGORY, REMOVE_CATEGORY, RENAME_CATEGORY, ADD_SUBCATEGORY, SET_CATEGORY_FILTER
+  ADD_CATEGORY, REMOVE_CATEGORY, RENAME_CATEGORY, MOVE_TASK
 } from '../constants';
 
 let nextCategoryId = 5;
 
-export const addCategory = (categoryName) => ({
+export const addCategory = (ancestorId, categoryName) => ({
   type: ADD_CATEGORY,
   id: nextCategoryId++,
-  categoryName
+  ancestorId,
+  categoryName,
 })
 
-export const removeCategory = (itemIndex) => ({
+export const removeCategory = (id) => ({
   type: REMOVE_CATEGORY,
-  itemIndex
+  id
 })
 
 export const renameCategory = (item, newCategoryName) => ({
@@ -21,9 +22,9 @@ export const renameCategory = (item, newCategoryName) => ({
   newCategoryName
 })
 
-export const addSubcategory = (categoryId, subCategoryName) => ({
-  type: ADD_SUBCATEGORY,
-  categoryId,
-  subCategoryName,
-  subCategoryId: nextCategoryId++,
+export const moveTask = (taskId, ancestorId, categoryToMoveId) => ({
+  type: MOVE_TASK,
+  taskId, //  Можно передавать весь элемент
+  ancestorId,
+  categoryToMoveId
 })

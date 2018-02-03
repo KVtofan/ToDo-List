@@ -10,14 +10,12 @@ class TodoApp extends Component {
       <div id="main">
         <header>
           <TodoHeader />
-          { !this.props.editMode &&
             <SearchBarContainer />
-          }
         </header>
         <hr />
         <main>
           <CategoriesContainer />
-          <TasksContainer /> 
+          <TasksContainer />
         </main>
       </div>
     );

@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
-const SearchBar = (
-  {
-  searchText, done,
-  handleChangeSearch, handleChangeDone
+const SearchBar = ({
+  searchText,
+  done,
+  editMode,
+  handleChangeSearch,
+  handleChangeDone,
   }) => {
+  if (editMode) {
+    return null;
+  }
   return (
     <form
       onSubmit={e => e.preventDefault()}
@@ -34,6 +39,7 @@ const SearchBar = (
 SearchBar.propTypes = {
   searchText: PropTypes.string,
   done: PropTypes.bool,
+  editMode: PropTypes.bool,
   handleChangeSearch: PropTypes.func.isRequired,
   handleChangeDone: PropTypes.func.isRequired
 }

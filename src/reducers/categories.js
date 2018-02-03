@@ -1,7 +1,10 @@
 import {
-  ADD_CATEGORY, REMOVE_CATEGORY, RENAME_CATEGORY, ADD_SUBCATEGORY,
-  ADD_TASK, TOGGLE_TASK,
+  ADD_CATEGORY, REMOVE_CATEGORY, RENAME_CATEGORY, MOVE_TASK, ADD_SUBCATEGORY,
+  ADD_TASK, TOGGLE_TASK, CHANGE_TASK
 } from '../constants';
+import {
+  markTaskDone, overwriteTask,
+ } from '../utils';
 
 export const categories = (state = [], action) => {
   switch (action.type) {
@@ -12,11 +15,15 @@ export const categories = (state = [], action) => {
     case RENAME_CATEGORY:
       return renameCategory(state, action);
     case ADD_SUBCATEGORY:
-      return addSubcategory(state, action);
+      return addCategory(state, action);
     case ADD_TASK:
       return addTask(state, action);
     case TOGGLE_TASK:
       return toggleTask(state, action);
+    case CHANGE_TASK:
+      return changeTask(state, action);
+    case MOVE_TASK:
+      return moveTask(state, action);
     default:
       return state;
   }
@@ -26,36 +33,24 @@ const addCategory = (state, action) => {
   return [
     {
       id: action.id,
+      ancestorId: action.ancestorId,
       name: action.categoryName,
       tasks: [],
-      subCategories:[],
     },
     ...state
   ];
 }
 
 const removeCategory = (state, action) => {
-    let newState = state.slice();
-    newState.splice(action.itemIndex, 1);
-    return newState;
+    return state.filter(category =>
+      category.id !== action.id
+    );
 }
 
 const renameCategory = (state, action) => {
   return state.map(category =>
     (category.id === action.item.id)
     ? {...category, name: action.newCategoryName}
-    : category
-  );
-}
-
-const addSubcategory = (state, action) => {
-  return state.map(category =>
-    (category.id === action.categoryId)
-    ? {...category, subCategories: [
-        {id: action.subCategoryId, name: action.subCategoryName, tasks: [], subCategories:[]},
-         ...category.subCategories,
-        ]
-      }
     : category
   );
 }
@@ -75,11 +70,41 @@ const addTask = (state, action) => {
 const toggleTask = (state, action) => {
   return  state.map(category =>
     (category.id === action.categoryId)
-    ? {...category, tasks: category.tasks.map(task=>
-        (task.id === action.id)
-        ? {...task, done: !task.done}
-        : task)
-      }
+    ? {...category, tasks: markTaskDone(category.tasks, action.index) }
     : category
   );
+}
+
+const changeTask = (state, action) => {
+  return state.map(category =>
+    (category.id === action.categoryId)
+    ? {...category, tasks: overwriteTask(category.tasks, action.newTask)}
+    : category
+  )
+}
+
+const moveTask = (state, action) => {
+  if (action.ancestorId === action.categoryToMoveId) {
+    return state;
+  }
+
+  let newTask;
+
+  let newState = state.map(category =>
+    (category.id === action.ancestorId)
+    ? {...category, tasks: category.tasks.filter(task => {
+      if (task.id !== action.taskId) {
+        return true;
+      }
+      newTask = task; 
+      return false;
+    }), }
+    : category
+  );
+
+  return addTask(newState, {
+    taskId: newTask.id,
+    categoryId: action.categoryToMoveId,
+    taskName: newTask.name,
+  });
 }
