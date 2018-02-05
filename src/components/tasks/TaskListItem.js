@@ -20,7 +20,6 @@ const TaskListItem = ({
 
   return (
     <li className="list-group-item">
-      <div className='undone'>
         <input
           type="checkbox"
           checked={item.done}
@@ -33,7 +32,6 @@ const TaskListItem = ({
           onClick={this.editTask}>
           <i className="fa fa-pencil-square-o"></i>
         </button>
-      </div>
     </li>
   );
 }

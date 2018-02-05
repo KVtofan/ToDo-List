@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import TodoApp from './TodoApp';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <TodoApp />
-      </div>
+      <MuiThemeProvider>
+        <div className="App">
+          <TodoApp />
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

@@ -3,6 +3,7 @@ import TodoHeader from './TodoHeader';
 import SearchBarContainer from './../containers/SearchBarContainer';
 import TasksContainer from './../containers/TasksContainer';
 import CategoriesContainer from './../containers/CategoriesContainer';
+import ProgressBarContainer from './../containers/ProgressBarContainer';
 
 class TodoApp extends Component {
   render() {
@@ -10,9 +11,10 @@ class TodoApp extends Component {
       <div id="main">
         <header>
           <TodoHeader />
-            <SearchBarContainer />
+          <SearchBarContainer />
         </header>
-        <hr />
+        <ProgressBarContainer />
+        <br />
         <main>
           <CategoriesContainer />
           <TasksContainer />

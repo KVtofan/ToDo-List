@@ -21,3 +21,17 @@ export const overwriteTask = (tasks, newTask) => {
     : task
   )
 }
+
+//  Calculate the percentage of completed jobs
+export const calculatePercentageOfCompletedTasks = (categories) => {
+  let CompletedCounter = 0;
+
+  categories.forEach(category => {
+    if (category.tasks.every(task => task.done)) {
+      CompletedCounter++;
+    }
+  });
+
+  console.log(CompletedCounter);
+  return CompletedCounter / categories.length * 100;
+}
