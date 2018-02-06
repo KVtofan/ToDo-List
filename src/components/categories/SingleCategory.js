@@ -46,7 +46,7 @@ class SingleCategory extends Component {
               type="button"
               className="showSubcategories"
               onClick={this.props.handleShowSubcategories}>
-              <i className="fa fa-chevron-down"></i>
+              <i className={this.props.showButtonClass}></i>
             </button>
           <p>{this.props.category.name}</p>
         </div>
@@ -92,6 +92,7 @@ SingleCategory.propTypes = {
   handleRenameCategory: PropTypes.func.isRequired,
   handleChooseCategory: PropTypes.func.isRequired,
   handleAddSubcategory: PropTypes.func.isRequired,
+  handleShowSubcategories: PropTypes.func .isRequired,
 }
 
 export default SingleCategory;

@@ -14,6 +14,8 @@ import SingleCategory from '../components/categories/SingleCategory'
 const mapStateToProps = (state, ownProps) => ({
   category: ownProps.category,
   editMode: state.editMode,
+  showButtonClass: ownProps.showButtonClass,
+  handleShowSubcategories: ownProps.handleShowSubcategories,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -32,7 +34,7 @@ const mapDispatchToProps = dispatch => ({
   handleMoveTaskToCategory: (taskId, ancestorId, categoryToMoveId) => {
     dispatch(moveTask(taskId, ancestorId, categoryToMoveId));
     dispatch(finishEditMode());
-  }
+  },
 });
 
 const SingleCategoryContainer = connect(
